@@ -41,7 +41,7 @@ class CoreDataManager: CoreDataManagerProtocol {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                fatalError("Unresolved Error")
+                fatalError("Unresolved Error: \(nserror)")
             }
         }
     }
