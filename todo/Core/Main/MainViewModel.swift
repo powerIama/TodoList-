@@ -14,4 +14,8 @@ final class MainViewModel {
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
     }
+    
+    func presentTaskView() {
+        coordinator.presentTaskView()
+    }
 }

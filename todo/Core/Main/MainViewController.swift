@@ -22,6 +22,20 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        title = "Todo 🏎️"
+        
+        view.backgroundColor = .systemBackground
+        
+        let barButton = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(barButtonTapped)
+        )
+        
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
+    @objc func barButtonTapped() {
+        viewModel.presentTaskView()
     }
 }

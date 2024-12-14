@@ -10,6 +10,7 @@ import UIKit
 final class MainCoordinator: Coordinator {
    
     var navigationController: UINavigationController
+    var childViewController: [Coordinator] = []
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -22,5 +23,11 @@ final class MainCoordinator: Coordinator {
             [vc],
             animated: true
         )
+    }
+    
+    func presentTaskView() {
+        let coordinator = TaskCoordinator(navigationController: navigationController)
+        childViewController.append(coordinator)
+        coordinator.start()
     }
 }
