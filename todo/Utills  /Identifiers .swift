@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+enum Identifiers: CaseIterable {
+    case incompletedCollectionIdentifer
+    case completedCollectionIdentifer
+    
+    var key: String {
+        switch self {
+        case .incompletedCollectionIdentifer: return "IncompletedCollectionCell"
+        case .completedCollectionIdentifer: return "CompletedCollectionCell"
+        }
+    }
+}
