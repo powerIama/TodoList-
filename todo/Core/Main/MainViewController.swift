@@ -13,8 +13,8 @@ final class MainViewController: UIViewController {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(
-            UITableViewCell.self,
-            forCellReuseIdentifier: "cell"
+            MainTableViewCell.self,
+            forCellReuseIdentifier: Identifiers.tasksTableViewIdentifier.key
         )
         return table
     }()
@@ -70,8 +70,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Welcome"
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.tasksTableViewIdentifier.key, for: indexPath) as? MainTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.todoNameLable.text = "Walk with dog"
+        cell.descriptionLable.text = "30 minutes"
+        return cell
     }
 }

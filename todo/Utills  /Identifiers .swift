@@ -10,11 +10,13 @@ import Foundation
 enum Identifiers: CaseIterable {
     case incompletedCollectionIdentifer
     case completedCollectionIdentifer
+    case tasksTableViewIdentifier
     
     var key: String {
         switch self {
         case .incompletedCollectionIdentifer: return "IncompletedCollectionCell"
         case .completedCollectionIdentifer: return "CompletedCollectionCell"
+        case .tasksTableViewIdentifier: return "TasksTableViewCell"
         }
     }
 }
