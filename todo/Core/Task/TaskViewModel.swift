@@ -13,4 +13,12 @@ final class TaskViewModel {
     init(coordinator: TaskCoordinator) {
         self.coordinator = coordinator
     }
+    
+    func checkingTextFields(title: String, description: String, completion: @escaping (Bool) -> Void) {
+        guard !title.isEmpty, !description.isEmpty else {
+            completion(false)
+            return
+        }
+        completion(true)
+    }
 }

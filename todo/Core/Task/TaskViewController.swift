@@ -17,7 +17,7 @@ final class TaskViewController: UIViewController {
         lable.text = "Create New Task ✍️"
         return lable
     }()
-
+    
     let titleTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
@@ -62,6 +62,25 @@ final class TaskViewController: UIViewController {
         title = "New Task"
         view.backgroundColor = .systemBackground
         layout()
+        
+        titleTextField.addTarget(
+            self,
+            action: #selector(textFieldDidChange),
+            for: .editingChanged
+        )
+        descriptionTextField.addTarget(
+            self,
+            action: #selector(textFieldDidChange),
+            for: .editingChanged
+        )
+        
+        createButton.addTarget(
+            self,
+            action: #selector(buttonTapped),
+            for: .touchUpInside
+        )
+        
+        textFieldDidChange()
     }
     
     func layout() {
@@ -74,7 +93,7 @@ final class TaskViewController: UIViewController {
             titleLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 140),
             titleLable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             titleLable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
+            
             titleTextField.topAnchor.constraint(equalTo: titleLable.bottomAnchor, constant: 40),
             titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
@@ -91,5 +110,21 @@ final class TaskViewController: UIViewController {
             createButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
+    @objc func textFieldDidChange() {
+        viewModel.checkingTextFields(
+            title: titleTextField.text ?? "",
+            description: descriptionTextField.text ?? "") { [weak self] value in
+                switch value {
+                case true:
+                    self?.createButton.isEnabled = true
+                case false:
+                    self?.createButton.isEnabled = false
+                }
+        }
+    }
+    
+    @objc func buttonTapped() {
+        print("Good")
+    }
 }
-
