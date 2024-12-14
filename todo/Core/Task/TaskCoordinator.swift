@@ -18,6 +18,7 @@ final class TaskCoordinator: Coordinator {
     func start() {
         let vm = TaskViewModel(coordinator: self)
         let vc = TaskViewController(viewModel: vm)
+        navigationController.navigationBar.prefersLargeTitles = true
         navigationController.present(
             vc,
             animated: true
