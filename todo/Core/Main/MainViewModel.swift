@@ -5,4 +5,13 @@
 //  Created by Demian Basistyi on 12/13/24.
 //
 
-import Foundation
+import UIKit
+
+final class MainViewModel {
+    
+    var coordinator: MainCoordinator
+    
+    init(coordinator: MainCoordinator) {
+        self.coordinator = coordinator
+    }
+}
