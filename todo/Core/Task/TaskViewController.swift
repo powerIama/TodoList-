@@ -57,6 +57,15 @@ final class TaskViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var backgroundAppoitment: Bool = false {
+        didSet {
+            createButton.backgroundColor = backgroundAppoitment ? .systemGray4: .clear
+            createButton.setTitleColor(backgroundAppoitment ? .systemBlue: .clear, for: .normal)
+            createButton.layer.borderWidth = backgroundAppoitment ? 0.5: 0.0
+            createButton.isEnabled = true
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "New Task"
@@ -112,19 +121,19 @@ final class TaskViewController: UIViewController {
     }
     
     @objc func textFieldDidChange() {
-        viewModel.checkingTextFields(
-            title: titleTextField.text ?? "",
-            description: descriptionTextField.text ?? "") { [weak self] value in
-                switch value {
-                case true:
-                    self?.createButton.isEnabled = true
-                case false:
-                    self?.createButton.isEnabled = false
-                }
+        guard viewModel.checkingTextFields(title: titleTextField.text ?? "", description: descriptionTextField.text ?? "" ) else {
+            backgroundAppoitment = false
+            return
         }
+        backgroundAppoitment = true
     }
     
     @objc func buttonTapped() {
-        print("Good")
+        guard let title = titleTextField.text, !title.isEmpty,
+              let description = descriptionTextField.text, !description.isEmpty
+        else {
+            return
+        }
+        viewModel.createNewTask(title: title, description: description)
     }
 }

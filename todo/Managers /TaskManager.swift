@@ -25,7 +25,7 @@ protocol TaskManagerProtocol {
 class CoreDataManager: CoreDataManagerProtocol {
     // container
     let persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "AppTaskModel")
+        let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error {
                 fatalError("Loading of store failed \(error)")
@@ -59,9 +59,11 @@ class CoreDataManager: CoreDataManagerProtocol {
 
 class TaskManager: TaskManagerProtocol {
     
+    static let shared = TaskManager()
+    
     var coreData: any CoreDataManagerProtocol
     
-    init(coreData: CoreDataManager) {
+    init(coreData: CoreDataManager = CoreDataManager()) {
         self.coreData = coreData
     }
     
@@ -71,19 +73,25 @@ class TaskManager: TaskManagerProtocol {
         do {
             return try context.fetch(fetchRequest)
         } catch {
-            print("Failed to fetch data :(")
             return []
         }
     }
     
     func createTask(title: String, description: String) -> Todo? {
         let context = (coreData as! CoreDataManager).persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: "Todo", in: context) else { return nil }
-        let newTask = Todo(entity: entity, insertInto: context)
-        newTask.title = title
-        newTask.taskDescription = description
-        coreData.saveData()
-        return newTask
+        guard let taskEntity = NSEntityDescription.entity(forEntityName: "Todo", in: context) else { return nil }
+        
+        let task = Todo(entity: taskEntity, insertInto: context)
+        task.title = title
+        task.taskDescription = description
+        
+        do {
+            try context.save()
+            return task
+        } catch let createError {
+            print("\(createError.localizedDescription)")
+        }
+        return nil
     }
     
     func fetchTasks(with name: String) -> Todo? {
@@ -94,7 +102,6 @@ class TaskManager: TaskManagerProtocol {
         do {
             return try context.fetch(fetchRequest).first
         } catch {
-            print("Failed to fetch task with name \(name): \(error.localizedDescription)")
             return nil
         }
     }
