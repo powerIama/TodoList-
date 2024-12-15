@@ -28,7 +28,6 @@ class IncompletedMainCollectionViewCell: UICollectionViewCell {
         return lable
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()

@@ -48,5 +48,4 @@ class MainTableViewCell: UITableViewCell {
             descriptionLable.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
         ])
     }
-
 }
