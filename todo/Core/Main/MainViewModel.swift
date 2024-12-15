@@ -19,6 +19,8 @@ final class MainViewModel {
     let taskManager = TaskManager.shared
     
     @Published var tasks: [Todo] = []
+    @Published var completedTask: [Todo] = []
+    
     var anyCancellables: Set<AnyCancellable> = []
     
     func presentTaskView() {
