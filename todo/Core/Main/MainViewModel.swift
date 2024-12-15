@@ -19,11 +19,14 @@ final class MainViewModel {
     let taskManager = TaskManager.shared
     
     @Published var tasks: [Todo] = []
-
     var anyCancellables: Set<AnyCancellable> = []
+
+    var onTasksUpdated: (() -> Void)?
     
     func presentTaskView() {
-        coordinator.presentTaskView()
+        coordinator.presentTaskView { [weak self] in
+            self?.fetchTasks()
+        }
     }
     
     func fetchTasks() {
@@ -39,8 +42,8 @@ final class MainViewModel {
     func binding() {
         $tasks
             .receive(on: DispatchQueue.main)
-            .sink { value in
-                print("VALUE: \(value)")
+            .sink { _ in
+                self.onTasksUpdated?()
         }
         .store(in: &anyCancellables)
         fetchTasks()

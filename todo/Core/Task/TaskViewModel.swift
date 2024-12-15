@@ -26,6 +26,7 @@ final class TaskViewModel {
         } else {
             print("Failed to create task. ❌")
         }
+        coordinator.onCreatedNewTask()
         print("Task Create Successfuly.")
         fetchTasks()
     }

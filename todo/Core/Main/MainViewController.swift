@@ -43,6 +43,18 @@ final class MainViewController: UIViewController {
         navigationItem.rightBarButtonItem = barButton
         setUpTableView()
         viewModel.binding()
+        setupViewModelCallbacks()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupViewModelCallbacks()
+    }
+    
+    private func setupViewModelCallbacks() {
+        viewModel.onTasksUpdated = { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     func setUpTableView() {

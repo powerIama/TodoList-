@@ -26,6 +26,9 @@ final class MainHeaderView: UIView {
         setupView()
         layout()
         self.backgroundColor = .systemBackground
+        
+        setupBindings()
+        collectionView.reloadData()
     }
     
     private func setupView() {
@@ -43,6 +46,16 @@ final class MainHeaderView: UIView {
         )
     }
     
+    private func setupBindings() {
+        viewModel.$tasks
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.collectionView.reloadData()
+            }
+            .store(in: &viewModel.anyCancellables)
+    }
+
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

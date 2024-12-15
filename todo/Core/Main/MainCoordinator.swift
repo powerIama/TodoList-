@@ -25,8 +25,12 @@ final class MainCoordinator: Coordinator {
         )
     }
     
-    func presentTaskView() {
-        let coordinator = TaskCoordinator(navigationController: navigationController)
+    func presentTaskView(_ onCreatedTask: @escaping () -> Void) {
+        let coordinator = TaskCoordinator(navigationController: navigationController, onCreatedNewTask: {
+            onCreatedTask() 
+        })
+        
+        
         childViewController.append(coordinator)
         coordinator.start()
     }

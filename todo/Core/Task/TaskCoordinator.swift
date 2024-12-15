@@ -10,9 +10,14 @@ import UIKit
 final class TaskCoordinator: Coordinator {
     
     var navigationController: UINavigationController
+    var onCreatedNewTask: () -> Void
     
-    init(navigationController: UINavigationController) {
+    init(
+        navigationController: UINavigationController,
+        onCreatedNewTask: @escaping () -> Void
+    ) {
         self.navigationController = navigationController
+        self.onCreatedNewTask = onCreatedNewTask
     }
     
     func start() {
