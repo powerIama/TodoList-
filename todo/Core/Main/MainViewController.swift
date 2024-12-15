@@ -52,7 +52,7 @@ final class MainViewController: UIViewController {
             x: 0,
             y: 0,
             width: 0,
-            height: 200)
+            height: 200), viewModel: viewModel
         )
         
         view.addSubview(tableView)
