@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class MainViewModel {
     
@@ -15,7 +16,32 @@ final class MainViewModel {
         self.coordinator = coordinator
     }
     
+    let taskManager = TaskManager.shared
+    
+    @Published var tasks: [Todo] = []
+    var anyCancellables: Set<AnyCancellable> = []
+    
     func presentTaskView() {
         coordinator.presentTaskView()
+    }
+    
+    func fetchTasks() {
+        let fetchedTasks = taskManager.fetchTasks()
+        tasks = fetchedTasks
+    }
+    
+    func deleteTask(lastTask task: Todo) {
+        taskManager.coreData.deleteData(object: task)
+        fetchTasks()
+    }
+    
+    func binding() {
+        $tasks
+            .receive(on: DispatchQueue.main)
+            .sink { value in
+                print("VALUE: \(value)")
+        }
+        .store(in: &anyCancellables)
+        fetchTasks()
     }
 }

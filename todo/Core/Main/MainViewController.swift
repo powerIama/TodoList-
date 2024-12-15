@@ -42,6 +42,7 @@ final class MainViewController: UIViewController {
         )
         navigationItem.rightBarButtonItem = barButton
         setUpTableView()
+        viewModel.binding()
     }
     
     func setUpTableView() {
@@ -66,15 +67,32 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.tasksTableViewIdentifier.key, for: indexPath) as? MainTableViewCell else {
             return UITableViewCell()
         }
-        cell.todoNameLable.text = "Walk with dog"
-        cell.descriptionLable.text = "30 minutes"
+        let taskData = viewModel.tasks[indexPath.row]
+        cell.todoNameLable.text = taskData.title
+        cell.descriptionLable.text = taskData.taskDescription
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let taskToDelete = viewModel.tasks[indexPath.row]
+            tableView.beginUpdates()
+            viewModel.tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            viewModel.deleteTask(lastTask: taskToDelete)
+            tableView.endUpdates()
+            
+        }
     }
 }
