@@ -121,7 +121,7 @@ final class TaskViewController: UIViewController {
     }
     
     @objc func textFieldDidChange() {
-        guard viewModel.checkingTextFields(title: titleTextField.text ?? "", description: descriptionTextField.text ?? "" ) else {
+        guard viewModel.validateFields(title: titleTextField.text ?? "", description: descriptionTextField.text ?? "" ) else {
             backgroundAppoitment = false
             return
         }

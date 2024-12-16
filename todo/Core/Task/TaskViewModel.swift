@@ -16,22 +16,17 @@ final class TaskViewModel {
     
     let taskManager = TaskManager.shared
     
-    func checkingTextFields(title: String, description: String) -> Bool {
+    func validateFields(title: String, description: String) -> Bool {
         return !title.isEmpty && !description.isEmpty
     }
     
     func createNewTask(title: String, description: String) {
-        if let createdTask = taskManager.createTask(title: title, description: description) {
+        if let createdTask = try? taskManager.createTask(title: title, description: description) {
             print("Task created successfully: \(createdTask) ✅")
+            coordinator.onCreatedNewTask()
         } else {
             print("Failed to create task. ❌")
         }
-        coordinator.onCreatedNewTask()
-        print("Task Create Successfuly.")
-        fetchTasks()
-    }
-    
-    func fetchTasks() {
         let tasks = taskManager.fetchTasks()
         print("🏎️ Fetched \(tasks.count) tasks: \(tasks)")
     }
