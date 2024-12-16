@@ -42,15 +42,9 @@ final class MainViewController: UIViewController {
         )
         navigationItem.rightBarButtonItem = barButton
         setUpTableView()
-        viewModel.binding() #warning("This should be moved to viewModel initialization")
         setupViewModelCallbacks()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setupViewModelCallbacks()  #warning("Move this to viewDidLoad")
-    }
-
     private func setupViewModelCallbacks() {
         viewModel.onTasksUpdated = { [weak self] in
             self?.tableView.reloadData()
@@ -98,10 +92,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            #warning("Instead of 'indexPath.row' use 'indexPath.item'")
-            let taskToDelete = viewModel.tasks[indexPath.row]
+            let taskToDelete = viewModel.tasks[indexPath.item]
             tableView.beginUpdates()
-            viewModel.tasks.remove(at: indexPath.row)
+            viewModel.tasks.remove(at: indexPath.item)
             tableView.deleteRows(at: [indexPath], with: .fade)
             viewModel.deleteTask(lastTask: taskToDelete)
             tableView.endUpdates()

@@ -29,8 +29,6 @@ final class MainCoordinator: Coordinator {
         let coordinator = TaskCoordinator(navigationController: navigationController, onCreatedNewTask: {
             onCreatedTask() 
         })
-        
-        
         childViewController.append(coordinator)
         coordinator.start()
     }
