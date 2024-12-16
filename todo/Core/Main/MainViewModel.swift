@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 
+#warning("Properties should be placed before init")
 final class MainViewModel {
     
     var coordinator: MainCoordinator
@@ -30,6 +31,7 @@ final class MainViewModel {
     }
     
     func fetchTasks() {
+        #warning("No need to create separate property, do 'tasks = taskManager.fetchTasks()'")
         let fetchedTasks = taskManager.fetchTasks()
         tasks = fetchedTasks
     }
@@ -38,7 +40,8 @@ final class MainViewModel {
         taskManager.coreData.deleteData(object: task)
         fetchTasks()
     }
-    
+
+    #warning("Binding method should only do bindings, not binding + fetching")
     func binding() {
         $tasks
             .receive(on: DispatchQueue.main)
