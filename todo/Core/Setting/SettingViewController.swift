@@ -10,6 +10,16 @@ import UIKit
 
 class SettingViewController: UIViewController {
     
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(
+            SettingTableViewCell.self,
+            forCellReuseIdentifier: Identifiers.settingsTableViewIdentifier.key
+        )
+        return tableView
+    }()
+    
     var viewModel: SettingViewModel
     
     init(viewModel: SettingViewModel) {
@@ -25,5 +35,38 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         title = "Setting"
         view.backgroundColor = .systemBackground
+        tableView.delegate = self
+        tableView.dataSource = self
+        layout()
+    }
+    
+    func layout() {
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+}
+
+extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.settingsPages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Identifiers.settingsTableViewIdentifier.key,
+            for: indexPath
+        ) as? SettingTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let settings = viewModel.settingsPages[indexPath.item]
+        cell.logoLable.text = settings.image
+        cell.titleLable.text = settings.title
+        return cell
     }
 }

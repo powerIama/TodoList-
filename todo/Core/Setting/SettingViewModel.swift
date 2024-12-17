@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 class SettingViewModel {
+
+    var settingsPages: [Settings] = [
+        .init(title: "Change Language", image: "🌎")
+    ]
     
     var coodinator: SettingCoordinator
     
