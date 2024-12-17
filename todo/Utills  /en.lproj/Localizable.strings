@@ -6,7 +6,7 @@
   
 */
 
-"settings.title" = "Settings";
+"settings.title" = "Setting";
 "settings.change_language" = "Change Language";
 "task.new" = "New Task";
 "task.description" = "Description";
@@ -15,4 +15,5 @@
 "task.title" = "Title";
 "task.create_new" = "Create New Task";
 "task.incompleted" = "Incompleted";
-"task.completed" = "Completed";
+"task.completed" = "Completed"; 
+

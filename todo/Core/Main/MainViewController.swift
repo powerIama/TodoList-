@@ -32,18 +32,18 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Todo".localized()
+        title = "task.todo".localized()
         view.backgroundColor = .systemBackground
         
         let rightBarButton = UIBarButtonItem(
-            title: "New Task".localized(),
+            title: "task.new".localized(),
             style: .done,
             target: self,
             action: #selector(rightBarButtonTapped)
         )
         
         let leftBarButton =  UIBarButtonItem(
-            title: "Setting".localized(),
+            title: "settings.title".localized(),
             style: .done,
             target: self,
             action: #selector(leftBarButtonTapped)

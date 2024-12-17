@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Setting".localized()
+        title = "settings.title".localized()
         view.backgroundColor = .systemBackground
         tableView.delegate = self
         tableView.dataSource = self
