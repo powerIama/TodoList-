@@ -29,6 +29,10 @@ class SettingCoordinator: Coordinator {
     }
     
     func presentSettingView() {
-        
+        UIApplication.shared.open(
+            URL.init(string: UIApplication.openSettingsURLString)!,
+            options: [:],
+            completionHandler: nil
+        )
     }
 }

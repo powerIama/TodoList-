@@ -10,7 +10,7 @@ import UIKit
 
 class SettingViewModel {
 
-    var settingsPages: [Settings] = [
+    var settingsPages: Array<Settings> = [
         .init(title: "Change Language", image: "🌎")
     ]
     
@@ -18,5 +18,9 @@ class SettingViewModel {
     
     init(coodinator: SettingCoordinator) {
         self.coodinator = coodinator
+    }
+    
+    func presentSettingView() {
+        coodinator.presentSettingView()
     }
 }
