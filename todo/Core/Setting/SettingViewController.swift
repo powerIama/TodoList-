@@ -69,4 +69,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.titleLable.text = settings.title
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let rowItem = viewModel.settingsPages[indexPath.item]
+        print("The page name is: \(rowItem.title) \(rowItem.image)")
+    }
 }

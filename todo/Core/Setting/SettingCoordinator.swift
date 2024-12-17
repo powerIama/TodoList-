@@ -27,4 +27,8 @@ class SettingCoordinator: Coordinator {
             animated: true
         )
     }
+    
+    func presentSettingView() {
+        
+    }
 }
