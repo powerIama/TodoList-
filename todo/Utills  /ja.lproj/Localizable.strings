@@ -6,13 +6,13 @@
   
 */
 
-"Setting" = "設定";
-"Change Language" = "言語を変更";
-"New Task" = "新しいタスク";
-"Description" = "説明";
-"Create" = "作成";
-"Todo" = "やること";
-"Title" = "タイトル";
-"Create New Task" = "新しいタスクを作成";
-"Incompleted" = "未完了";
-"Completed" = "完了";
+"settings.title" = "設定";
+"settings.change_language" = "言語を変更";
+"task.new" = "新しいタスク";
+"task.description" = "説明";
+"task.create" = "作成";
+"task.todo" = "やること";
+"task.title" = "タイトル";
+"task.create_new" = "新しいタスクを作成";
+"task.incompleted" = "未完了";
+"task.completed" = "完了";

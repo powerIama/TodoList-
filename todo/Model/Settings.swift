@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import UIKit
 
-struct Settings {
+struct SettingsItemConfiguration {
     var title: String
     var image: String
 }

@@ -34,7 +34,7 @@ final class MainCoordinator: Coordinator {
     }
     
     func presentSetttingView() {
-        let coordinator = SettingCoordinator(navigationController: navigationController)
+        let coordinator = SettingsCoordinator(navigationController: navigationController)
         childViewController.append(coordinator)
         coordinator.start()
     }

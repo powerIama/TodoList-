@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingTableViewCell: UITableViewCell {
+final class SettingsTableViewCell: UITableViewCell {
     
     var logoLable: UILabel = {
         let lable = UILabel()

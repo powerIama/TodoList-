@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingCoordinator: Coordinator {
+class SettingsCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
@@ -16,11 +16,11 @@ class SettingCoordinator: Coordinator {
     }
     
     func start() {
-        let viewModel = SettingViewModel(
+        let viewModel = SettingsViewModel(
             coodinator: self
         )
         
-        let viewController = SettingViewController(viewModel: viewModel)
+        let viewController = SettingsViewController(viewModel: viewModel)
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.pushViewController(
             viewController,

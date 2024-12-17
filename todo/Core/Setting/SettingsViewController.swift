@@ -8,21 +8,21 @@
 import Foundation
 import UIKit
 
-class SettingViewController: UIViewController {
+class SettingsViewController: UIViewController {
     
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(
-            SettingTableViewCell.self,
+            SettingsTableViewCell.self,
             forCellReuseIdentifier: Identifiers.settingsTableViewIdentifier.key
         )
         return tableView
     }()
     
-    var viewModel: SettingViewModel
+    var viewModel: SettingsViewModel
     
-    init(viewModel: SettingViewModel) {
+    init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,7 +51,7 @@ class SettingViewController: UIViewController {
     }
 }
 
-extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.settingsPages.count
     }
@@ -60,7 +60,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: Identifiers.settingsTableViewIdentifier.key,
             for: indexPath
-        ) as? SettingTableViewCell else {
+        ) as? SettingsTableViewCell else {
             return UITableViewCell()
         }
         

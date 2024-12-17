@@ -8,15 +8,15 @@
 import Foundation
 import UIKit
 
-class SettingViewModel {
+final class SettingsViewModel {
 
-    var settingsPages: Array<Settings> = [
+    var settingsPages: Array<SettingsItemConfiguration> = [
         .init(title: "Change Language".localized(), image: "🌎")
     ]
     
-    var coodinator: SettingCoordinator
+    var coodinator: SettingsCoordinator
     
-    init(coodinator: SettingCoordinator) {
+    init(coodinator: SettingsCoordinator) {
         self.coodinator = coodinator
     }
     
