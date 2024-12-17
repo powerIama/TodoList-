@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  todo
+
+  Created by Demian Basistyi on 12/16/24.
+  
+*/
+
+"Setting" = "設定";
+"Change Language" = "言語を変更";
+"New Task" = "新しいタスク";
+"Description" = "説明";
+"Create" = "作成";
+"Todo" = "やること";
+"Title" = "タイトル";
+"Create New Task" = "新しいタスクを作成";
+"Incompleted" = "未完了";
+"Completed" = "完了";

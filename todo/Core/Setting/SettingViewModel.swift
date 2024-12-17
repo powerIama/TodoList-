@@ -11,7 +11,7 @@ import UIKit
 class SettingViewModel {
 
     var settingsPages: Array<Settings> = [
-        .init(title: "Change Language", image: "🌎")
+        .init(title: "Change Language".localized(), image: "🌎")
     ]
     
     var coodinator: SettingCoordinator

@@ -14,7 +14,7 @@ final class TaskViewController: UIViewController {
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 20, weight: .bold)
         lable.textAlignment = .center
-        lable.text = "Create New Task ✍️"
+        lable.text = "Create New Task".localized()
         return lable
     }()
     
@@ -22,7 +22,7 @@ final class TaskViewController: UIViewController {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Title"
+        textField.placeholder = "Title".localized()
         textField.layer.cornerRadius = 12
         return textField
     }()
@@ -31,14 +31,14 @@ final class TaskViewController: UIViewController {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
-        textField.placeholder = "Description"
+        textField.placeholder = "Description".localized()
         return textField
     }()
     
     let createButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Create", for: .normal)
+        button.setTitle("Create".localized(), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .systemGray5
         button.layer.cornerRadius = 12
@@ -68,7 +68,7 @@ final class TaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "New Task"
+        title = "New Task".localized()
         view.backgroundColor = .systemBackground
         layout()
         
