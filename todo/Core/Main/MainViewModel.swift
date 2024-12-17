@@ -31,6 +31,10 @@ final class MainViewModel {
         }
     }
     
+    func presentSettingView() {
+        coordinator.presentSetttingView()
+    }
+    
     func fetchTasks() {
         tasks = taskManager.fetchTasks()
     }

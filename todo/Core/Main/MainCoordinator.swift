@@ -32,4 +32,10 @@ final class MainCoordinator: Coordinator {
         childViewController.append(coordinator)
         coordinator.start()
     }
+    
+    func presentSetttingView() {
+        let coordinator = SettingCoordinator(navigationController: navigationController)
+        childViewController.append(coordinator)
+        coordinator.start()
+    }
 }

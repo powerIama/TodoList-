@@ -35,12 +35,22 @@ final class MainViewController: UIViewController {
         title = "Todo 🏎️"
         view.backgroundColor = .systemBackground
         
-        let barButton = UIBarButtonItem(
-            barButtonSystemItem: .add,
+        let rightBarButton = UIBarButtonItem(
+            title: "New Task",
+            style: .done,
             target: self,
-            action: #selector(barButtonTapped)
+            action: #selector(rightBarButtonTapped)
         )
-        navigationItem.rightBarButtonItem = barButton
+        
+        let leftBarButton =  UIBarButtonItem(
+            title: "Setting",
+            style: .done,
+            target: self,
+            action: #selector(leftBarButtonTapped)
+        )
+        
+        navigationItem.rightBarButtonItems = [leftBarButton,rightBarButton]
+        
         setUpTableView()
         setupViewModelCallbacks()
     }
@@ -65,8 +75,12 @@ final class MainViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-    @objc func barButtonTapped() {
+    @objc func rightBarButtonTapped() {
         viewModel.presentTaskView()
+    }
+    
+    @objc func leftBarButtonTapped() {
+        viewModel.presentSettingView()
     }
 }
 
