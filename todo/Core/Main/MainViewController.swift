@@ -9,7 +9,7 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(
@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
         return table
     }()
     
-    var viewModel: MainViewModel
+    private var viewModel: MainViewModel
     
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
@@ -37,17 +37,14 @@ final class MainViewController: UIViewController {
         
         let rightBarButton = UIBarButtonItem(
             title: "task.new".localized(),
-            style: .done,
-            target: self,
-            action: #selector(rightBarButtonTapped)
+            primaryAction: .init(handler: { _ in
+                self.rightBarButtonDidTap()
+            })
         )
         
-        let leftBarButton =  UIBarButtonItem(
-            title: "settings.title".localized(),
-            style: .done,
-            target: self,
-            action: #selector(leftBarButtonTapped)
-        )
+        let leftBarButton = UIBarButtonItem(title: "settings.title".localized(),primaryAction: .init(handler: { _ in
+            self.leftBarButtonDidTap()
+        }))
         
         navigationItem.rightBarButtonItems = [leftBarButton,rightBarButton]
         
@@ -75,12 +72,12 @@ final class MainViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-    @objc func rightBarButtonTapped() {
+    @objc func rightBarButtonDidTap() {
         viewModel.presentTaskView()
     }
     
-    @objc func leftBarButtonTapped() {
-        viewModel.presentSettingView()
+    @objc func leftBarButtonDidTap() {
+        viewModel.presentSettingsView()
     }
 }
 

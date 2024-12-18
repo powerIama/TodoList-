@@ -31,7 +31,7 @@ final class MainViewModel {
         }
     }
     
-    func presentSettingView() {
+    func presentSettingsView() {
         coordinator.presentSetttingView()
     }
     

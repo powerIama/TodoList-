@@ -9,7 +9,7 @@ import UIKit
 
 final class TaskViewController: UIViewController {
     
-    let titleLable: UILabel = {
+    private let titleLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 20, weight: .bold)
@@ -18,7 +18,7 @@ final class TaskViewController: UIViewController {
         return lable
     }()
     
-    let titleTextField: UITextField = {
+    private let titleTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +27,7 @@ final class TaskViewController: UIViewController {
         return textField
     }()
     
-    let descriptionTextField: UITextField = {
+    private let descriptionTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
@@ -35,7 +35,7 @@ final class TaskViewController: UIViewController {
         return textField
     }()
     
-    let createButton: UIButton = {
+    private let createButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("task.create".localized(), for: .normal)
@@ -46,7 +46,7 @@ final class TaskViewController: UIViewController {
         return button
     }()
     
-    var viewModel: TaskViewModel
+    private var viewModel: TaskViewModel
     
     init(viewModel: TaskViewModel) {
         self.viewModel = viewModel

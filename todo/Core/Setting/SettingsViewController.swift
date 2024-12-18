@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class SettingsViewController: UIViewController {
+final class SettingsViewController: UIViewController {
     
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(
@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController {
         return tableView
     }()
     
-    var viewModel: SettingsViewModel
+    private var viewModel: SettingsViewModel
     
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel

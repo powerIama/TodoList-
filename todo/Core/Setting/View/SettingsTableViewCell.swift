@@ -16,7 +16,7 @@ final class SettingsTableViewCell: UITableViewCell {
         lable.font = .systemFont(ofSize: 25)
         return lable
     }()
-    var titleLable: UILabel = {
+     var titleLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.numberOfLines = 0
@@ -32,7 +32,7 @@ final class SettingsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func layout() {
+    private func layout() {
         self.contentView.addSubview(logoLable)
         self.contentView.addSubview(titleLable)
         NSLayoutConstraint.activate([

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsCoordinator: Coordinator {
+final class SettingsCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
@@ -19,7 +19,6 @@ class SettingsCoordinator: Coordinator {
         let viewModel = SettingsViewModel(
             coodinator: self
         )
-        
         let viewController = SettingsViewController(viewModel: viewModel)
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.pushViewController(
@@ -28,7 +27,7 @@ class SettingsCoordinator: Coordinator {
         )
     }
     
-    func presentSettingView() {
+    func pushViewController() {
         UIApplication.shared.open(
             URL.init(string: UIApplication.openSettingsURLString)!,
             options: [:],

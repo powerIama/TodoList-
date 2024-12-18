@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 final class SettingsViewModel {
 
@@ -21,6 +20,6 @@ final class SettingsViewModel {
     }
     
     func presentSettingView() {
-        coodinator.presentSettingView()
+        coodinator.pushViewController()
     }
 }
