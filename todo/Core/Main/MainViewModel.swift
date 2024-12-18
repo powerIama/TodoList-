@@ -32,7 +32,7 @@ final class MainViewModel {
     }
     
     func presentSettingsView() {
-        coordinator.presentSetttingView()
+        coordinator.navigateToSettings()
     }
     
     func fetchTasks() {

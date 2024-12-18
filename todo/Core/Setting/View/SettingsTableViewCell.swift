@@ -16,7 +16,7 @@ final class SettingsTableViewCell: UITableViewCell {
         lable.font = .systemFont(ofSize: 25)
         return lable
     }()
-     var titleLable: UILabel = {
+    var titleLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.numberOfLines = 0

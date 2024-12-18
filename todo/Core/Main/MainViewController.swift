@@ -72,11 +72,11 @@ final class MainViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-    @objc func rightBarButtonDidTap() {
+    @objc private func rightBarButtonDidTap() {
         viewModel.presentTaskView()
     }
     
-    @objc func leftBarButtonDidTap() {
+    @objc private func leftBarButtonDidTap() {
         viewModel.presentSettingsView()
     }
 }

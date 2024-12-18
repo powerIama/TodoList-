@@ -34,7 +34,7 @@ class MainTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func layout() {
+    private func layout() {
         self.contentView.addSubview(todoNameLable)
         self.contentView.addSubview(descriptionLable)
         NSLayoutConstraint.activate([

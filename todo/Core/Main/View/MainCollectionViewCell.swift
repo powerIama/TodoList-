@@ -9,7 +9,7 @@ import UIKit
 
 class IncompletedMainCollectionViewCell: UICollectionViewCell {
     
-    let totalOfTaskNameLable: UILabel = {
+    private let totalOfTaskNameLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.text = "task.incompleted".localized()
@@ -61,7 +61,7 @@ class IncompletedMainCollectionViewCell: UICollectionViewCell {
 
 class CompletedMainCollectionViewCell: UICollectionViewCell {
     
-    let totalOfTaskNameLable: UILabel = {
+    private let totalOfTaskNameLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.text = "task.completed".localized()

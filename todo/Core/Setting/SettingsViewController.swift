@@ -40,7 +40,7 @@ final class SettingsViewController: UIViewController {
         layout()
     }
     
-    func layout() {
+    private func layout() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
