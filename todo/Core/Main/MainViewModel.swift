@@ -31,7 +31,7 @@ final class MainViewModel {
         }
     }
     
-    func presentSettingsView() {
+    func navigateToSettings() {
         coordinator.navigateToSettings()
     }
     

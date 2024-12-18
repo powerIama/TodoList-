@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+final class MainTableViewCell: UITableViewCell {
     
     private let todoNameLable: UILabel = {
         let lable = UILabel()

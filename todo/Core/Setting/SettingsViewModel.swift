@@ -19,7 +19,7 @@ final class SettingsViewModel {
         self.coodinator = coodinator
     }
     
-    func presentSettingView() {
+    func navigateToAppleSettings() {
         coodinator.navigateToAppleSettings()
     }
 }

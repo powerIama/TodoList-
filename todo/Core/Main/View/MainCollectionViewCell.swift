@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IncompletedMainCollectionViewCell: UICollectionViewCell {
+final class IncompletedMainCollectionViewCell: UICollectionViewCell {
     
     private let totalOfTaskNameLable: UILabel = {
         let lable = UILabel()
@@ -63,7 +63,7 @@ class IncompletedMainCollectionViewCell: UICollectionViewCell {
     }
 }
 
-class CompletedMainCollectionViewCell: UICollectionViewCell {
+final class CompletedMainCollectionViewCell: UICollectionViewCell {
     
     private let totalOfTaskNameLable: UILabel = {
         let lable = UILabel()
