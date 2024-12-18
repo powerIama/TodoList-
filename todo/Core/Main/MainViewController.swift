@@ -58,7 +58,7 @@ final class MainViewController: UIViewController {
         }
     }
     
-    func setUpTableView() {
+    private func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = MainHeaderView(frame: CGRect(
