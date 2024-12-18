@@ -92,8 +92,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let taskData = viewModel.tasks[indexPath.row]
-        cell.todoNameLable.text = taskData.title
-        cell.descriptionLable.text = taskData.taskDescription
+        cell.configure(
+            name: taskData.title ?? "",
+            description: taskData.taskDescription ?? ""
+        )
         return cell
     }
     

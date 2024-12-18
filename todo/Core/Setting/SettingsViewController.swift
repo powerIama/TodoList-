@@ -65,8 +65,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let settings = viewModel.settingsPages[indexPath.item]
-        cell.logoLable.text = settings.image
-        cell.titleLable.text = settings.title
+        cell.configure(logo: settings.image, title: settings.title)
         return cell
     }
     

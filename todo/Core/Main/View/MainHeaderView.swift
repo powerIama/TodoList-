@@ -83,7 +83,7 @@ extension MainHeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.incompletedCollectionIdentifer.key, for: indexPath) as? IncompletedMainCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.totalOfTaskAmountLable.text = "\(String(viewModel.tasks.count))"
+            cell.configure(totalOfTask: "\(String(viewModel.tasks.count))")
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.completedCollectionIdentifer.key, for: indexPath) as? CompletedMainCollectionViewCell else {

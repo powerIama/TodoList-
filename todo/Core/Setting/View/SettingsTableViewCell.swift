@@ -9,14 +9,14 @@ import UIKit
 
 final class SettingsTableViewCell: UITableViewCell {
     
-    var logoLable: UILabel = {
+    private var logoLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.numberOfLines = 0
         lable.font = .systemFont(ofSize: 25)
         return lable
     }()
-    var titleLable: UILabel = {
+    private var titleLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.numberOfLines = 0
@@ -30,6 +30,11 @@ final class SettingsTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(logo: String, title: String) {
+        logoLable.text = logo
+        titleLable.text = title
     }
     
     private func layout() {

@@ -18,13 +18,12 @@ class IncompletedMainCollectionViewCell: UICollectionViewCell {
         return lable
     }()
     
-    let totalOfTaskAmountLable: UILabel = {
+    private let totalOfTaskAmountLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 38, weight: .bold)
         lable.textColor = .gray
         lable.textAlignment = .center
-        lable.text = "0"
         return lable
     }()
     
@@ -33,6 +32,7 @@ class IncompletedMainCollectionViewCell: UICollectionViewCell {
         layout()
         self.layer.cornerRadius = 10
         self.backgroundColor = .systemGray6
+        configure(totalOfTask: "0")
     }
     
     required init?(coder: NSCoder) {
@@ -40,9 +40,13 @@ class IncompletedMainCollectionViewCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-           super.layoutSubviews()
-           layout()
-       }
+        super.layoutSubviews()
+        layout()
+    }
+    
+    func configure(totalOfTask: String?) {
+        totalOfTaskAmountLable.text = totalOfTask
+    }
     
     func layout() {
         contentView.addSubview(totalOfTaskNameLable)
@@ -70,7 +74,7 @@ class CompletedMainCollectionViewCell: UICollectionViewCell {
         return lable
     }()
     
-    let totalOfTaskAmountLable: UILabel = {
+    private let totalOfTaskAmountLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 38, weight: .bold)
@@ -83,6 +87,7 @@ class CompletedMainCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()
+        configure(totalOfTask: "0")
         self.layer.cornerRadius = 10
         self.backgroundColor = .systemGray6
     }
@@ -92,9 +97,13 @@ class CompletedMainCollectionViewCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-           super.layoutSubviews()
-           layout()
-       }
+        super.layoutSubviews()
+        layout()
+    }
+    
+    func configure(totalOfTask: String?) {
+        totalOfTaskAmountLable.text = totalOfTask
+    }
     
     func layout() {
         contentView.addSubview(totalOfTaskNameLable)

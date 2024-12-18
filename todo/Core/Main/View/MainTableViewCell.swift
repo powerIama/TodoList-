@@ -9,7 +9,7 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
     
-    let todoNameLable: UILabel = {
+    private let todoNameLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 18, weight: .bold)
@@ -17,7 +17,7 @@ class MainTableViewCell: UITableViewCell {
         return lable
     }()
     
-    let descriptionLable: UILabel = {
+    private let descriptionLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 14, weight: .regular)
@@ -32,6 +32,11 @@ class MainTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(name: String, description: String) {
+        todoNameLable.text = name
+        descriptionLable.text = description
     }
     
     private func layout() {
