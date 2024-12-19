@@ -77,7 +77,7 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func leftBarButtonDidTap() {
-        viewModel.presentSettingsView()
+        viewModel.navigateToSettings()
     }
 }
 

@@ -73,6 +73,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         let rowItem = viewModel.settingsPages[indexPath.item]
         print("The page name is: \(rowItem.title) \(rowItem.image)")
         
-        viewModel.presentSettingView() 
+        viewModel.navigateToAppleSettings() 
     }
 }
