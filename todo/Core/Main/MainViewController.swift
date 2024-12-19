@@ -9,7 +9,7 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(
@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
         return table
     }()
     
-    var viewModel: MainViewModel
+    private var viewModel: MainViewModel
     
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
@@ -32,15 +32,22 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Todo 🏎️"
+        title = "task.todo".localized()
         view.backgroundColor = .systemBackground
         
-        let barButton = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(barButtonTapped)
+        let rightBarButton = UIBarButtonItem(
+            title: "task.new".localized(),
+            primaryAction: .init(handler: { _ in
+                self.rightBarButtonDidTap()
+            })
         )
-        navigationItem.rightBarButtonItem = barButton
+        
+        let leftBarButton = UIBarButtonItem(title: "settings.title".localized(),primaryAction: .init(handler: { _ in
+            self.leftBarButtonDidTap()
+        }))
+        
+        navigationItem.rightBarButtonItems = [leftBarButton,rightBarButton]
+        
         setUpTableView()
         setupViewModelCallbacks()
     }
@@ -51,7 +58,7 @@ final class MainViewController: UIViewController {
         }
     }
     
-    func setUpTableView() {
+    private func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = MainHeaderView(frame: CGRect(
@@ -65,8 +72,12 @@ final class MainViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-    @objc func barButtonTapped() {
+    @objc private func rightBarButtonDidTap() {
         viewModel.presentTaskView()
+    }
+    
+    @objc private func leftBarButtonDidTap() {
+        viewModel.navigateToSettings()
     }
 }
 
@@ -81,8 +92,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let taskData = viewModel.tasks[indexPath.row]
-        cell.todoNameLable.text = taskData.title
-        cell.descriptionLable.text = taskData.taskDescription
+        cell.configure(
+            name: taskData.title ?? "",
+            description: taskData.taskDescription ?? ""
+        )
         return cell
     }
     

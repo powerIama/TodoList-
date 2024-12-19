@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+final class MainTableViewCell: UITableViewCell {
     
-    let todoNameLable: UILabel = {
+    private let todoNameLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 18, weight: .bold)
@@ -17,7 +17,7 @@ class MainTableViewCell: UITableViewCell {
         return lable
     }()
     
-    let descriptionLable: UILabel = {
+    private let descriptionLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 14, weight: .regular)
@@ -34,7 +34,12 @@ class MainTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func layout() {
+    func configure(name: String, description: String) {
+        todoNameLable.text = name
+        descriptionLable.text = description
+    }
+    
+    private func layout() {
         self.contentView.addSubview(todoNameLable)
         self.contentView.addSubview(descriptionLable)
         NSLayoutConstraint.activate([

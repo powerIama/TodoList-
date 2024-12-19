@@ -9,7 +9,7 @@ import UIKit
 
 final class MainCoordinator: Coordinator {
    
-    var navigationController: UINavigationController
+    weak var navigationController: UINavigationController?
     var childViewController: [Coordinator] = []
     
     init(navigationController: UINavigationController) {
@@ -19,16 +19,22 @@ final class MainCoordinator: Coordinator {
     func start() {
         let vm = MainViewModel(coordinator: self)
         let vc = MainViewController(viewModel: vm)
-        navigationController.setViewControllers(
+        navigationController?.setViewControllers(
             [vc],
             animated: true
         )
     }
     
     func presentTaskView(_ onCreatedTask: @escaping () -> Void) {
-        let coordinator = TaskCoordinator(navigationController: navigationController, onCreatedNewTask: {
-            onCreatedTask() 
+        let coordinator = TaskCoordinator(navigationController: navigationController ?? UINavigationController(), onCreatedNewTask: {
+            onCreatedTask()
         })
+        childViewController.append(coordinator)
+        coordinator.start()
+    }
+    
+    func navigateToSettings() {
+        let coordinator = SettingsCoordinator(navigationController: navigationController ?? UINavigationController())
         childViewController.append(coordinator)
         coordinator.start()
     }

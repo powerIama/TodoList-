@@ -11,12 +11,14 @@ enum Identifiers: CaseIterable {
     case incompletedCollectionIdentifer
     case completedCollectionIdentifer
     case tasksTableViewIdentifier
+    case settingsTableViewIdentifier
     
     var key: String {
         switch self {
         case .incompletedCollectionIdentifer: return "IncompletedCollectionCell"
         case .completedCollectionIdentifer: return "CompletedCollectionCell"
         case .tasksTableViewIdentifier: return "TasksTableViewCell"
+        case .settingsTableViewIdentifier: return "SettingsTableViewCell"
         }
     }
 }

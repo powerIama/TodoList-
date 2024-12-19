@@ -31,6 +31,10 @@ final class MainViewModel {
         }
     }
     
+    func navigateToSettings() {
+        coordinator.navigateToSettings()
+    }
+    
     func fetchTasks() {
         tasks = taskManager.fetchTasks()
     }

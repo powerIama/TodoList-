@@ -9,36 +9,36 @@ import UIKit
 
 final class TaskViewController: UIViewController {
     
-    let titleLable: UILabel = {
+    private let titleLable: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.font = .systemFont(ofSize: 20, weight: .bold)
         lable.textAlignment = .center
-        lable.text = "Create New Task ✍️"
+        lable.text = "task.create_new".localized()
         return lable
     }()
     
-    let titleTextField: UITextField = {
+    private let titleTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Title"
+        textField.placeholder = "task.title".localized()
         textField.layer.cornerRadius = 12
         return textField
     }()
     
-    let descriptionTextField: UITextField = {
+    private let descriptionTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
-        textField.placeholder = "Description"
+        textField.placeholder = "task.description".localized()
         return textField
     }()
     
-    let createButton: UIButton = {
+    private let createButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Create", for: .normal)
+        button.setTitle("task.create".localized(), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.backgroundColor = .systemGray5
         button.layer.cornerRadius = 12
@@ -46,7 +46,7 @@ final class TaskViewController: UIViewController {
         return button
     }()
     
-    var viewModel: TaskViewModel
+    private var viewModel: TaskViewModel
     
     init(viewModel: TaskViewModel) {
         self.viewModel = viewModel
@@ -68,7 +68,7 @@ final class TaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "New Task"
+        title = "New Task".localized()
         view.backgroundColor = .systemBackground
         layout()
         
@@ -92,7 +92,7 @@ final class TaskViewController: UIViewController {
         textFieldDidChange()
     }
     
-    func layout() {
+    private func layout() {
         view.addSubview(titleLable)
         view.addSubview(titleTextField)
         view.addSubview(descriptionTextField)

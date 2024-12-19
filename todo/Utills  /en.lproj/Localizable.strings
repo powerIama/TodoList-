@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  todo
+
+  Created by Demian Basistyi on 12/16/24.
+  
+*/
+
+"settings.title" = "Setting";
+"settings.change_language" = "Change Language";
+"task.new" = "New Task";
+"task.description" = "Description";
+"task.create" = "Create";
+"task.todo" = "Todo";
+"task.title" = "Title";
+"task.create_new" = "Create New Task";
+"task.incompleted" = "Incompleted";
+"task.completed" = "Completed"; 
+
