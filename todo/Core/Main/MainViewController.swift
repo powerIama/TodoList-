@@ -101,7 +101,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let deleteTaskAction = UIContextualAction(style: .destructive, title: "Delete") { [self]  (contextualAction, view, boolValue) in
+        let deleteTaskAction = UIContextualAction(style: .destructive, title: "") { [self]  (contextualAction, view, boolValue) in
             let taskToDelete = viewModel.tasks[indexPath.item]
             tableView.beginUpdates()
             viewModel.tasks.remove(at: indexPath.item)
@@ -110,17 +110,22 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.endUpdates()
         }
         
-        let markAsCompletedAction = UIContextualAction(style: .destructive, title: "Complete") { [self] (contextualAction, view, boolValue) in
+        let markAsCompletedAction = UIContextualAction(style: .destructive, title: "") { [self] (contextualAction, view, boolValue) in
             viewModel.markTaskAsComplete()
         }
         
-        let editTaskAction = UIContextualAction(style: .destructive, title: "Edit") {  [self] (contextualAction, view, boolValue) in
+        let editTaskAction = UIContextualAction(style: .destructive, title: "") {  [self] (contextualAction, view, boolValue) in
             viewModel.editTask()
         }
         
         deleteTaskAction.backgroundColor = .systemRed
         markAsCompletedAction.backgroundColor = .systemGreen
         editTaskAction.backgroundColor = .systemYellow
+        
+        deleteTaskAction.image = UIImage(systemName: "trash.fill")
+        markAsCompletedAction.image = UIImage(systemName: "checkmark.seal.fill")
+        editTaskAction.image = UIImage(systemName: "slider.horizontal.3")
+
         let swipeActions = UISwipeActionsConfiguration(
             actions: [deleteTaskAction, markAsCompletedAction, editTaskAction]
         )
