@@ -49,6 +49,7 @@ final class MainViewModel {
     }
     
     func editTask() {
+        coordinator.presentCustomAlert()
         print("Edit Task")
     }
     

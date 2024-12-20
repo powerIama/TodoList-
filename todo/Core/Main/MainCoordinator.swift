@@ -39,7 +39,10 @@ final class MainCoordinator: Coordinator {
         coordinator.start()
     }
     
-    func presentAlertView() {
-        
+    //Present Custom alert
+    func presentCustomAlert() {
+        let coordinator = CustomAlertCoordinator(navigationController: navigationController ?? UINavigationController())
+        childViewController.append(coordinator)
+        coordinator.start()
     }
 }
