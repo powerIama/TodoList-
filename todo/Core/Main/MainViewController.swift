@@ -110,12 +110,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.endUpdates()
         }
         
-        let markAsCompletedAction = UIContextualAction(style: .destructive, title: "Complete") {  (contextualAction, view, boolValue) in
-            print("Complete")
+        let markAsCompletedAction = UIContextualAction(style: .destructive, title: "Complete") { [self] (contextualAction, view, boolValue) in
+            viewModel.markTaskAsComplete()
         }
         
-        let editTaskAction = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
-            print("Edit")
+        let editTaskAction = UIContextualAction(style: .destructive, title: "Edit") {  [self] (contextualAction, view, boolValue) in
+            viewModel.editTask()
         }
         
         deleteTaskAction.backgroundColor = .systemRed

@@ -44,6 +44,14 @@ final class MainViewModel {
         fetchTasks()
     }
     
+    func markTaskAsComplete() {
+        print("Task as Complete")
+    }
+    
+    func editTask() {
+        print("Edit Task")
+    }
+    
     func binding() {
         $tasks
             .receive(on: DispatchQueue.main)
