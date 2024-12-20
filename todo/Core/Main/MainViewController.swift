@@ -98,20 +98,34 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         )
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteTaskAction = UIContextualAction(style: .destructive, title: "Delete") { [self]  (contextualAction, view, boolValue) in
             let taskToDelete = viewModel.tasks[indexPath.item]
             tableView.beginUpdates()
             viewModel.tasks.remove(at: indexPath.item)
             tableView.deleteRows(at: [indexPath], with: .fade)
             viewModel.deleteTask(lastTask: taskToDelete)
             tableView.endUpdates()
-            
         }
+        
+        let markAsCompletedAction = UIContextualAction(style: .destructive, title: "Complete") {  (contextualAction, view, boolValue) in
+            print("Complete")
+        }
+        
+        let editTaskAction = UIContextualAction(style: .destructive, title: "Edit") {  (contextualAction, view, boolValue) in
+            print("Edit")
+        }
+        
+        deleteTaskAction.backgroundColor = .systemRed
+        markAsCompletedAction.backgroundColor = .systemGreen
+        editTaskAction.backgroundColor = .systemYellow
+        let swipeActions = UISwipeActionsConfiguration(
+            actions: [deleteTaskAction, markAsCompletedAction, editTaskAction]
+        )
+        
+        return swipeActions
     }
+    
 }
