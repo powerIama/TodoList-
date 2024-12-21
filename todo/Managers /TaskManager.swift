@@ -62,8 +62,6 @@ final class TaskManager: TaskManagerProtocol {
     }
     
     func updateTask(task: Todo) {
-        let context = (coreDataManager as! CoreDataManager).persistentContainer.viewContext
-        
         coreDataManager.saveData()
     }
 }

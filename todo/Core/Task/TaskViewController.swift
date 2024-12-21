@@ -134,7 +134,11 @@ final class TaskViewController: UIViewController {
         else {
             return
         }
-        viewModel.createNewTask(title: title, description: description)
+        
+        viewModel.createNewTask(
+            title: title,
+            description: description
+        )
         dismiss(animated: true)
     }
 }
