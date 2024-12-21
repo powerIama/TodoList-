@@ -17,3 +17,5 @@
 "task.create_new" = "新しいタスクを作成";
 "task.incompleted" = "未完了";
 "task.completed" = "完了済み";
+"task.update" = "タスクの更新";
+

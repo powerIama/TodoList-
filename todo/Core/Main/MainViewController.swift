@@ -115,7 +115,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let editTaskAction = UIContextualAction(style: .destructive, title: "") {  [self] (contextualAction, view, boolValue) in
-            viewModel.editTask()
+            viewModel.presentCustomAlert()
         }
         
         deleteTaskAction.backgroundColor = .systemRed

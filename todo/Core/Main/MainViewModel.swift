@@ -48,9 +48,8 @@ final class MainViewModel {
         print("Task as Complete")
     }
     
-    func editTask() {
+    func presentCustomAlert() {
         coordinator.presentCustomAlert()
-        print("Edit Task")
     }
     
     func binding() {

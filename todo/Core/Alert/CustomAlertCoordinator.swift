@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomAlertCoordinator: Coordinator {
+final class CustomAlertCoordinator: Coordinator {
     
     weak var navigationController: UINavigationController?
     
@@ -16,8 +16,9 @@ class CustomAlertCoordinator: Coordinator {
     }
     
     func start() {
+        let viewModel = CustomAlertViewModel()
         DispatchQueue.main.async {
-            let alertVC = CustomAlertView()
+            let alertVC = CustomAlertViewController(viewModel: viewModel)
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve
             self.navigationController?.present(alertVC,animated: true)

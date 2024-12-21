@@ -15,5 +15,6 @@
 "task.title" = "Title";
 "task.create_new" = "Create New Task";
 "task.incompleted" = "Incompleted";
-"task.completed" = "Completed"; 
+"task.completed" = "Completed";
+"task.update" = "Update Task";
 
