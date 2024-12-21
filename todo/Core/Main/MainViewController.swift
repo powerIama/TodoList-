@@ -121,7 +121,22 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let editTaskAction = UIContextualAction(style: .destructive, title: "") {  [self] (contextualAction, view, boolValue) in
-            viewModel.presentCustomAlert()
+            
+            viewModel.presentAlert { result in
+                switch result {
+                case .success(let (title, description)):
+                    DispatchQueue.main.async { [self] in
+                        viewModel.updateTask(
+                            task: taskData,
+                            title: title,
+                            description: description
+                        )
+                        tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
         }
         
         deleteTaskAction.backgroundColor = .systemRed

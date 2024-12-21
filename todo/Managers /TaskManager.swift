@@ -14,7 +14,7 @@ protocol TaskManagerProtocol {
     func fetchTasks(isComplete: Bool) -> [Todo]
     func createTask(title: String, description: String, date: String, isComplete: Bool) throws -> Todo
     func fetchTasks(with name: String) -> Todo?
-    func updateTask(task: Todo)
+    func updateTask(task: Todo, newTitle: String?, newDescription: String?)
 }
 
 final class TaskManager: TaskManagerProtocol {
@@ -36,7 +36,7 @@ final class TaskManager: TaskManagerProtocol {
             return []
         }
     }
-
+    
     
     func createTask(title: String, description: String, date: String, isComplete: Bool = false) throws -> Todo {
         let context = (coreDataManager as! CoreDataManager).persistentContainer.viewContext
@@ -71,7 +71,13 @@ final class TaskManager: TaskManagerProtocol {
         }
     }
     
-    func updateTask(task: Todo) {
+    func updateTask(task: Todo, newTitle: String?, newDescription: String?) {
+        if let newTitle = newTitle {
+            task.title = newTitle
+        }
+        if let newDescription = newDescription {
+            task.taskDescription = newDescription
+        }
         coreDataManager.saveData()
     }
 }

@@ -51,8 +51,14 @@ final class MainViewModel {
         fetchTasks()
     }
     
-    func presentCustomAlert() {
-        coordinator.presentCustomAlert()
+    func updateTask(task: Todo,title: String, description: String) {
+        taskManager.updateTask(task: task, newTitle: title, newDescription: description)
+    }
+    
+    func presentAlert(completion: @escaping (Result<(String, String), Error>) -> Void) {
+        coordinator.presentAlert { result in
+            completion(result)
+        }
     }
     
     func binding() {
