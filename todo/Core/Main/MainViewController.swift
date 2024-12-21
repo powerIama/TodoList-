@@ -92,6 +92,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let taskData = viewModel.tasks[indexPath.row]
+        cell.selectionStyle = .none
         cell.configure(
             name: taskData.title ?? "",
             description: taskData.taskDescription ?? "",
@@ -99,7 +100,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         )
         return cell
     }
-        
+     
+    //MARK: - Swipe Buttons
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let taskData = viewModel.tasks[indexPath.row]
