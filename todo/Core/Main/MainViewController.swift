@@ -95,7 +95,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(
             name: taskData.title ?? "",
             description: taskData.taskDescription ?? "",
-            date: "12/20/24"
+            date: taskData.date ?? ""
         )
         return cell
     }

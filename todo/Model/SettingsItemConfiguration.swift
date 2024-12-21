@@ -1,8 +1,8 @@
 //
-//  Settings.swift
+//  SettingsItemConfiguration.swift
 //  todo
 //
-//  Created by Demian Basistyi on 12/16/24.
+//  Created by Demian Basistyi on 12/20/24.
 //
 
 import Foundation
