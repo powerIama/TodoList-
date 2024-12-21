@@ -27,8 +27,10 @@ final class TaskViewModel {
         } else {
             print("Failed to create task. ❌")
         }
-        let tasks = taskManager.fetchTasks()
-        print("🏎️ Fetched \(tasks.count) tasks: \(tasks)")
+        let tasks = taskManager.fetchTasks(isComplete: false)
+        let completedTask = taskManager.fetchTasks(isComplete: true)
+        print("❌ Fetched \(tasks.count) tasks: \(tasks)")
+        print("✅ Fetched \(completedTask.count) tasks: \(completedTask)")
     }
     
     func formatDateToMMDDYYYY(date: Date) -> String {
