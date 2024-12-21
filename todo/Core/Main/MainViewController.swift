@@ -94,7 +94,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let taskData = viewModel.tasks[indexPath.row]
         cell.configure(
             name: taskData.title ?? "",
-            description: taskData.taskDescription ?? ""
+            description: taskData.taskDescription ?? "",
+            date: "12/20/24"
         )
         return cell
     }
