@@ -12,7 +12,7 @@ protocol TaskManagerProtocol {
     var coreDataManager: CoreDataManagerProtocol { get }
     
     func fetchTasks(isComplete: Bool) -> [Todos]
-    func createTask(title: String, description: String, date: Date, isComplete: Bool) throws -> Todos
+    func createTask(title: String, description: String, date: Date) throws -> Todos
     func fetchTasks(with name: String) -> Todos?
     func updateTask(task: Todos, newTitle: String?, newDescription: String?)
 }
@@ -38,7 +38,7 @@ final class TaskManager: TaskManagerProtocol {
     }
     
     
-    func createTask(title: String, description: String, date: Date, isComplete: Bool = false) throws -> Todos {
+    func createTask(title: String, description: String, date: Date) throws -> Todos {
         let context = (coreDataManager as! CoreDataManager).persistentContainer.viewContext
         let task = Todos(context: context)
         task.title = title
