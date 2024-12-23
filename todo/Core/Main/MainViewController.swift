@@ -105,7 +105,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let taskData = viewModel.tasks[indexPath.row]
+        let task = viewModel.tasks[indexPath.row]
 
         let deleteTaskAction = UIContextualAction(style: .destructive, title: "") { [self]  (contextualAction, view, boolValue) in
             let taskToDelete = viewModel.tasks[indexPath.item]
@@ -117,7 +117,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let markAsCompletedAction = UIContextualAction(style: .destructive, title: "") { [self] (contextualAction, view, boolValue) in
-            viewModel.markTaskAsComplete(with: taskData)
+            viewModel.markTaskAsComplete(task)
         }
         
         let editTaskAction = UIContextualAction(style: .destructive, title: "") {  [self] (contextualAction, view, boolValue) in
@@ -127,7 +127,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 case .success(let (title, description)):
                     DispatchQueue.main.async { [self] in
                         viewModel.updateTask(
-                            task: taskData,
+                            task: task,
                             title: title,
                             description: description
                         )

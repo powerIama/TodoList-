@@ -7,8 +7,6 @@
 
 import UIKit
 
-import UIKit
-
 final class MainCoordinator: Coordinator {
     
     weak var navigationController: UINavigationController?
@@ -38,7 +36,7 @@ final class MainCoordinator: Coordinator {
         coordinator.start()
     }
     
-    func presentAlert(completion: @escaping (Result<(String, String), Error>) -> Void) {
+    func presentUpdateTaskAlert(completion: @escaping (Result<(String, String), Error>) -> Void) {
         let alertController = UIAlertController(title: "Update Task", message: nil, preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "New Title"

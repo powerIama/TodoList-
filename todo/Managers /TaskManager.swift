@@ -44,7 +44,7 @@ final class TaskManager: TaskManagerProtocol {
         task.title = title
         task.taskDescription = description
         task.date = date
-        task.isComplete = isComplete
+        task.isComplete = false
         do {
             try context.save()
             return task
@@ -53,7 +53,7 @@ final class TaskManager: TaskManagerProtocol {
         }
     }
     
-    func markAsComplete(with task: Todo) {
+    func markAsComplete(_ task: Todo) {
         task.isComplete = true
         coreDataManager.saveData()
     }

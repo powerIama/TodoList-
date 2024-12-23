@@ -46,8 +46,8 @@ final class MainViewModel {
         fetchTasks()
     }
     
-    func markTaskAsComplete(with task: Todo) {
-        taskManager.markAsComplete(with: task)
+    func markTaskAsComplete(_ task: Todo) {
+        taskManager.markAsComplete(task)
         fetchTasks()
     }
     
@@ -56,7 +56,7 @@ final class MainViewModel {
     }
     
     func presentAlert(completion: @escaping (Result<(String, String), Error>) -> Void) {
-        coordinator.presentAlert { result in
+        coordinator.presentUpdateTaskAlert { result in
             completion(result)
         }
     }
