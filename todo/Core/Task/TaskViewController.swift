@@ -135,13 +135,8 @@ final class TaskViewController: UIViewController {
             return
         }
         
-        let currentDate = viewModel.formatDateToMMDDYYYY(date: Date())
+        viewModel.createNewTask(title: title, description: description, date: Date())
 
-        viewModel.createNewTask(
-            title: title,
-            description: description,
-            date: currentDate
-        )
         dismiss(animated: true)
     }
 }

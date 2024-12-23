@@ -20,7 +20,7 @@ final class TaskViewModel {
         return !title.isEmpty && !description.isEmpty
     }
     
-    func createNewTask(title: String, description: String, date: String) {
+    func createNewTask(title: String, description: String, date: Date) {
         if let createdTask = try? taskManager.createTask(title: title, description: description, date: date) {
             print("Task created successfully: \(createdTask) ✅")
             coordinator.onCreatedNewTask()
