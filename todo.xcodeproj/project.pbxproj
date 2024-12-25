@@ -8,7 +8,6 @@
 
 /* Begin PBXFileReference section */
 		C9B2013B2D0D05EA00F4C872 /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9B77D7A2D19B1AC000F122E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -46,7 +45,6 @@
 		C9B201322D0D05EA00F4C872 = {
 			isa = PBXGroup;
 			children = (
-				C9B77D7A2D19B1AC000F122E /* MyPlayground.playground */,
 				C9B2013D2D0D05EA00F4C872 /* todo */,
 				C9B2013C2D0D05EA00F4C872 /* Products */,
 			);

@@ -11,10 +11,10 @@ import CoreData
 protocol TaskManagerProtocol {
     var coreDataManager: CoreDataManagerProtocol { get }
     
-    func fetchTasks(isComplete: Bool) -> [Todos]
-    func createTask(title: String, description: String, date: Date) throws -> Todos
-    func fetchTasks(with name: String) -> Todos?
-    func updateTask(task: Todos, newTitle: String?, newDescription: String?)
+    func fetchTasks(isComplete: Bool) -> [Todo]
+    func createTask(title: String, description: String, date: Date) throws -> Todo
+    func fetchTasks(with name: String) -> Todo?
+    func updateTask(task: Todo, newTitle: String?, newDescription: String?)
 }
 
 final class TaskManager: TaskManagerProtocol {
@@ -26,8 +26,8 @@ final class TaskManager: TaskManagerProtocol {
         self.coreDataManager = coreDataManager
     }
     
-    func fetchTasks(isComplete: Bool) -> [Todos] {
-        let fetchRequest = Todos.fetchRequest()
+    func fetchTasks(isComplete: Bool) -> [Todo] {
+        let fetchRequest = Todo.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isComplete == %@", NSNumber(value: isComplete))
         
         do {
@@ -38,9 +38,9 @@ final class TaskManager: TaskManagerProtocol {
     }
     
     
-    func createTask(title: String, description: String, date: Date) throws -> Todos {
+    func createTask(title: String, description: String, date: Date) throws -> Todo {
         let context = (coreDataManager as! CoreDataManager).persistentContainer.viewContext
-        let task = Todos(context: context)
+        let task = Todo(context: context)
         task.title = title
         task.taskDescription = description
         task.date = date
@@ -53,15 +53,15 @@ final class TaskManager: TaskManagerProtocol {
         }
     }
     
-    func markAsComplete(_ task: Todos) {
+    func markAsComplete(_ task: Todo) {
         task.isComplete = true
         coreDataManager.saveData()
     }
     
-    func fetchTasks(with name: String) -> Todos? {
+    func fetchTasks(with name: String) -> Todo? {
         let context = (coreDataManager as! CoreDataManager).persistentContainer.viewContext
         
-        let fetchRequest = Todos.fetchRequest()
+        let fetchRequest = Todo.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "title == %@", name)
         
         do {
@@ -71,7 +71,7 @@ final class TaskManager: TaskManagerProtocol {
         }
     }
     
-    func updateTask(task: Todos, newTitle: String?, newDescription: String?) {
+    func updateTask(task: Todo, newTitle: String?, newDescription: String?) {
         if let newTitle = newTitle {
             task.title = newTitle
         }

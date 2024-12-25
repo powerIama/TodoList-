@@ -14,8 +14,8 @@ final class MainViewModel {
     
     let taskManager = TaskManager.shared
     
-    @Published var tasks: [Todos] = []
-    @Published var completedTask: [Todos] = []
+    @Published var tasks: [Todo] = []
+    @Published var completedTask: [Todo] = []
     
     var anyCancellables: Set<AnyCancellable> = []
     var onTasksUpdated: (() -> Void)?
@@ -41,17 +41,17 @@ final class MainViewModel {
         completedTask = taskManager.fetchTasks(isComplete: true)
     }
     
-    func deleteTask(lastTask task: Todos) {
+    func deleteTask(_ task: Todo) {
         taskManager.coreDataManager.deleteData(object: task)
         fetchTasks()
     }
     
-    func markTaskAsComplete(_ task: Todos) {
+    func markTaskAsComplete(_ task: Todo) {
         taskManager.markAsComplete(task)
         fetchTasks()
     }
     
-    func updateTask(task: Todos,title: String, description: String) {
+    func updateTask(task: Todo, title: String, description: String) {
         taskManager.updateTask(task: task, newTitle: title, newDescription: description)
     }
     
