@@ -112,7 +112,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.beginUpdates()
             viewModel.tasks.remove(at: indexPath.item)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            viewModel.deleteTask(lastTask: taskToDelete)
+            viewModel.deleteTask(taskToDelete)
             tableView.endUpdates()
         }
         
