@@ -53,6 +53,12 @@ final class MainHeaderView: UIView {
                 self?.collectionView.reloadData()
             }
             .store(in: &viewModel.anyCancellables)
+        viewModel.$completedTask
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.collectionView.reloadData()
+            }
+            .store(in: &viewModel.anyCancellables)
     }
 
 
@@ -68,7 +74,6 @@ final class MainHeaderView: UIView {
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-        
     }
 }
 
@@ -89,6 +94,7 @@ extension MainHeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.completedCollectionIdentifer.key, for: indexPath) as? CompletedMainCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.configure(totalOfTask: "\(String(viewModel.completedTask.count))")
             return cell
         }
     }

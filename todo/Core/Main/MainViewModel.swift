@@ -15,6 +15,8 @@ final class MainViewModel {
     let taskManager = TaskManager.shared
     
     @Published var tasks: [Todo] = []
+    @Published var completedTask: [Todo] = []
+    
     var anyCancellables: Set<AnyCancellable> = []
     var onTasksUpdated: (() -> Void)?
     
@@ -22,7 +24,6 @@ final class MainViewModel {
         self.coordinator = coordinator
         fetchTasks()
         binding()
-        
     }
     
     func presentTaskView() {
@@ -36,16 +37,38 @@ final class MainViewModel {
     }
     
     func fetchTasks() {
-        tasks = taskManager.fetchTasks()
+        tasks = taskManager.fetchTasks(isComplete: false)
+        completedTask = taskManager.fetchTasks(isComplete: true)
     }
     
-    func deleteTask(lastTask task: Todo) {
+    func deleteTask(_ task: Todo) {
         taskManager.coreDataManager.deleteData(object: task)
         fetchTasks()
     }
     
+    func markTaskAsComplete(_ task: Todo) {
+        taskManager.markAsComplete(task)
+        fetchTasks()
+    }
+    
+    func updateTask(task: Todo, title: String, description: String) {
+        taskManager.updateTask(task: task, newTitle: title, newDescription: description)
+    }
+    
+    func presentAlert(completion: @escaping (Result<(String, String), Error>) -> Void) {
+        coordinator.presentUpdateTaskAlert { result in
+            completion(result)
+        }
+    }
+    
     func binding() {
         $tasks
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.onTasksUpdated?()
+            }
+            .store(in: &anyCancellables)
+        $completedTask
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 self.onTasksUpdated?()

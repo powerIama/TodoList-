@@ -11,10 +11,10 @@ import CoreData
 protocol TaskManagerProtocol {
     var coreDataManager: CoreDataManagerProtocol { get }
     
-    func fetchTasks() -> [Todo]
-    func createTask(title: String, description: String) throws -> Todo
+    func fetchTasks(isComplete: Bool) -> [Todo]
+    func createTask(title: String, description: String, date: Date) throws -> Todo
     func fetchTasks(with name: String) -> Todo?
-    func updateTask(task: Todo)
+    func updateTask(task: Todo, newTitle: String?, newDescription: String?)
 }
 
 final class TaskManager: TaskManagerProtocol {
@@ -26,8 +26,10 @@ final class TaskManager: TaskManagerProtocol {
         self.coreDataManager = coreDataManager
     }
     
-    func fetchTasks() -> [Todo] {
+    func fetchTasks(isComplete: Bool) -> [Todo] {
         let fetchRequest = Todo.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isComplete == %@", NSNumber(value: isComplete))
+        
         do {
             return try coreDataManager.viewContext.fetch(fetchRequest)
         } catch {
@@ -35,17 +37,25 @@ final class TaskManager: TaskManagerProtocol {
         }
     }
     
-    func createTask(title: String, description: String) throws -> Todo {
+    
+    func createTask(title: String, description: String, date: Date) throws -> Todo {
         let context = (coreDataManager as! CoreDataManager).persistentContainer.viewContext
         let task = Todo(context: context)
         task.title = title
         task.taskDescription = description
+        task.date = date
+        task.isComplete = false
         do {
             try context.save()
             return task
         } catch let createError {
             throw CoreDataError.creationFailed("Failed to create a task due to \(createError.localizedDescription).")
         }
+    }
+    
+    func markAsComplete(_ task: Todo) {
+        task.isComplete = true
+        coreDataManager.saveData()
     }
     
     func fetchTasks(with name: String) -> Todo? {
@@ -61,7 +71,13 @@ final class TaskManager: TaskManagerProtocol {
         }
     }
     
-    func updateTask(task: Todo) {
+    func updateTask(task: Todo, newTitle: String?, newDescription: String?) {
+        if let newTitle = newTitle {
+            task.title = newTitle
+        }
+        if let newDescription = newDescription {
+            task.taskDescription = newDescription
+        }
         coreDataManager.saveData()
     }
 }

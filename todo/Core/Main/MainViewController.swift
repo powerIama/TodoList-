@@ -92,26 +92,66 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let taskData = viewModel.tasks[indexPath.row]
+        cell.selectionStyle = .none
         cell.configure(
             name: taskData.title ?? "",
-            description: taskData.taskDescription ?? ""
+            description: taskData.taskDescription ?? "",
+            date: taskData.date?.toString(format: "MM/dd") ?? ""
         )
         return cell
     }
+     
+    //MARK: - Swipe Buttons
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let task = viewModel.tasks[indexPath.row]
+
+        let deleteTaskAction = UIContextualAction(style: .destructive, title: "") { [self]  (contextualAction, view, boolValue) in
             let taskToDelete = viewModel.tasks[indexPath.item]
             tableView.beginUpdates()
             viewModel.tasks.remove(at: indexPath.item)
             tableView.deleteRows(at: [indexPath], with: .fade)
             viewModel.deleteTask(lastTask: taskToDelete)
             tableView.endUpdates()
-            
         }
+        
+        let markAsCompletedAction = UIContextualAction(style: .destructive, title: "") { [self] (contextualAction, view, boolValue) in
+            viewModel.markTaskAsComplete(task)
+        }
+        
+        let editTaskAction = UIContextualAction(style: .destructive, title: "") {  [self] (contextualAction, view, boolValue) in
+            
+            viewModel.presentAlert { result in
+                switch result {
+                case .success(let (title, description)):
+                    DispatchQueue.main.async { [self] in
+                        viewModel.updateTask(
+                            task: task,
+                            title: title,
+                            description: description
+                        )
+                        tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        deleteTaskAction.backgroundColor = .systemRed
+        markAsCompletedAction.backgroundColor = .systemGreen
+        editTaskAction.backgroundColor = .systemYellow
+        
+        deleteTaskAction.image = UIImage(systemName: "trash.fill")
+        markAsCompletedAction.image = UIImage(systemName: "checkmark.seal.fill")
+        editTaskAction.image = UIImage(systemName: "slider.horizontal.3")
+
+        let swipeActions = UISwipeActionsConfiguration(
+            actions: [deleteTaskAction, markAsCompletedAction, editTaskAction]
+        )
+        
+        return swipeActions
     }
+    
 }
